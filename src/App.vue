@@ -1,17 +1,61 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Products :products="products" v-on:add-to-cart="addToCart" />
+  <Cart :carts="carts" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Products from "./components/Products.vue";
+import Cart from "./components/Cart.vue";
+import "./assets/tailwind.css";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    Products,
+    Cart,
+  },
+  data() {
+    return {
+      carts: [],
+      products: [
+        {
+          id: 1,
+          title: "Nike Black Addition",
+          price: 15,
+          quantity: 1,
+          imageSrc: require("./assets/images/nike-black.jpg"),
+        },
+        {
+          id: 2,
+          title: "Nike Red Addition",
+          price: 25,
+          quantity: 1,
+          imageSrc: require("./assets/images/nike-red.jpg"),
+        },
+        {
+          id: 3,
+          title: "Nike White Addition",
+          price: 35,
+          quantity: 1,
+          imageSrc: require("./assets/images/nike-white.jpg"),
+        },
+      ],
+    };
+  },
+  methods: {
+    addToCart(product) {
+      const index = this.carts.findIndex((p) => {
+        return p.id === product.id;
+      });
+      if (index === -1) {
+        this.carts.push(product);
+      } else {
+        this.carts[index].quantity++;
+      }
+
+      // console.log(product);
+    },
+  },
+};
 </script>
 
 <style>
