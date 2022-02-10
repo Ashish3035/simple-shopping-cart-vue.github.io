@@ -38,6 +38,13 @@ export default {
           quantity: 1,
           imageSrc: require("./assets/images/nike-white.jpg"),
         },
+        {
+          id: 4,
+          title: "Addidas Black Addition",
+          price: 50,
+          quantity: 1,
+          imageSrc: require("./assets/images/Black-Addidas.jpg")
+        },
       ],
     };
   },
